@@ -1,0 +1,25 @@
+using DelimitedFiles
+EVDdata = DelimitedFiles.readdlm("C:/Users/Lenovo/Julia/wikipediaEVDdatesconverted.csv",',')
+EVDdata[end-9:end,:]
+rows, cols = size(EVDdata)
+for i = 1:rows
+    for j = 1:cols
+        if(!isdigit(string(EVDdata[i,j])[1]))
+            EVDdata[i,j] = 0
+        end
+    end
+end
+EVDdata[end-9:end,:]
+
+epidays = EVDdata[:,1]
+EVDcasesnycountry = EVDdata[:,[4,6,8]]
+
+using Plots
+gr()
+plot(epidays,[EVDcasesnycountry[:,1];EVDcasesnycountry[:,2]])
+plot(epidays,EVDcasesnycountry[:,2])
+
+x = [1, 2, 3, 4]
+x
+y=x.^2
+EVDdata(1,1)
